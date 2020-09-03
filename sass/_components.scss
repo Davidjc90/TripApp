@@ -1,0 +1,712 @@
+///////////////////////////////////////////////
+////LOGO
+.logo{
+	height: 3.25rem;
+	margin-left: 3rem;
+}
+
+
+
+///////////////////////////////////////////////
+////SEARCH
+.search{
+	flex: 0 0 40%;
+	//ACTING LIKE A CONTAINER BECAUSE PARENT ELEMENT
+	display: flex;
+	align-items: center;
+	justify-content: center;
+      
+      //changing the input searchbar as the last element in 500px resolution
+	@media only screen and (max-width: $bp-smallest){
+       order: 1;
+       flex: 0 0 100%;
+
+	}
+
+	&__input{
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+      background-color: var(--color-grey-light-2);
+      border: none;
+      padding: .7rem .2rem;
+      border-radius: 100px;
+      width: 90%;
+      transition: all .2s ease-in;
+      margin-right: -3.25rem;
+
+       &:focus{
+       	 outline: none;
+         width: 100%;
+         background-color: var(--color-grey-light-3);  
+           //When is focus at input 500px resolution
+           @media only screen and (max-width: $bp-smallest){
+               width: 95%;  
+           }
+       }
+       //CHANGING THE SIZE OF INPUT PLACEHOLDER
+       &::-webkit-input-placeholder{
+       	  font-weight: 100;
+       	  color: var(--color-grey-light-4);
+       }
+
+	}
+
+	//TO CHANGE THE BACKGROUND COLOR WHEN IS FOCUSED 
+	//USING ADJANCENT SIBLING SELECTOR +
+	&__input:focus + &__button{
+       background-color: var(--color-grey-light-3); 
+	}
+
+
+	&__button{
+       border:none;
+       background-color: var(--color-grey-light-2); 
+
+       &:focus{
+       	outline:none;
+       }
+
+       &:active{
+         transform: translateY(2px);
+       }
+	}
+
+
+	&__icon{
+       height: 2rem;
+       width: 2rem;
+       //CHANGING THE COLOR OF SVG ICON
+       fill: var(--color-grey-dark-3);
+	}
+}
+
+
+///////////////////////////////////////////////
+////USER NAVIGATIONS
+.user-nav{
+	align-self: normal;
+	display: flex;
+	align-items: center;
+	 /* continues watching video header part 3 min 3.48*/
+
+	& > * {
+		padding: 0 2rem; /*zero top bottom 2rem left and right*/
+		cursor: pointer;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
+	& > *:hover {
+        background-color: var(--color-grey-light-2);
+	}
+
+	&__icon-box{
+		position: relative;
+
+	}
+
+	&__icon{
+       height: 2.25rem;
+       width: 2.25rem;
+       fill: var(--color-grey-dark-2);
+
+	}
+
+	&__notification{
+       font-size: .8rem;
+       height: 1.75rem;
+       width: 1.75rem;
+       border-radius: 50%;
+       background-color: var(--color-primary);
+       color: #fff;
+       position: absolute;
+       top: 1.5rem;
+       right: 1.1rem;
+
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+	}
+
+	&__user{
+       display: flex;
+	}
+
+    &__dropdown{
+       display: none;
+        transition-delay: 0.25s;
+       
+    }
+     //creating a dropdown menu when is hover
+     &__user:hover > &__dropdown{
+     	display: flex;
+        flex-direction: column;
+        padding: 1rem 2rem;
+        transition: all 0.3s ease-in;
+       
+     }
+
+	&__user-photo{
+       height: 3.75rem;
+       border-radius: 50%;
+       margin-right: 1rem;
+	}
+
+	
+
+	/*&__user-name{
+
+	}*/
+
+}
+
+
+///////////////////////////////////////////////
+////SIDE NAVIGATION
+.side-nav{
+	font-size: 1.4rem;
+	font-weight: 400;
+	list-style: none;
+	margin-top: 3.5rem;
+
+	//Sidebar chage to Nav on top
+	@media only screen and (max-width: $bp-medium){
+       display: flex;
+       margin: 0;
+	} 
+
+	&__item{
+		position: relative;
+
+		&:not(:last-child){
+			margin-bottom: .5rem;
+			@media only screen and (max-width: $bp-medium){
+               margin: 0;
+			}
+		}
+
+		//Occuping the entire width of navbar align-items on top
+    	@media only screen and (max-width: $bp-medium){
+            flex:1;
+            
+	    } 
+
+       
+   }
+	//HOVERING EFECT first step 
+	&__item::before{
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 3px;
+		height: 100%;
+		background-color: var(--color-primary);
+		transform: scaleY(0);
+		transition: transform .2s,
+		            width .4s cubic-bezier(1,0,0,1) .2s,
+		            background-color .1s;
+	}
+
+	&__item:hover::before,
+	&__item--active::before{
+		transform: scaleY(1);
+		transform-origin: left;
+		width: 100%;
+	}
+
+	&__item:active::before{
+		background-color: var(--color-primary-light);
+	}
+
+	&__link:link,
+	&__link:visited{
+       color: var(--color-grey-light-1);
+       text-decoration: none;
+       text-transform: uppercase;
+       position: relative;/*This is for allow the animation */
+       z-index: 10;/*This is for allow the animation */
+       padding: 1.5rem 3rem;
+       display: flex;
+       align-items: center;
+
+       //Align contents to center at 900px  
+       @media only screen and (max-width: $bp-medium){
+          justify-content: center;
+          padding: 2rem;
+       }
+
+       //put the icon on top of the link element at 600px
+       @media only screen and (max-width: $bp-small){
+       	  flex-direction: column; 
+       	  padding: 1.5rem .5rem;
+       }
+
+	}
+
+	&__icon{
+       width: 1.75rem;
+       height: 1.75rem;
+       margin-right: 2rem;
+       fill: currentcolor;
+         
+         //Centering the icon at 600px
+       @media only screen and (max-width: $bp-small){
+         margin-right: 0;
+         width: 1.8rem;
+         height: 1.8rem;
+         margin-bottom: .7rem;
+       }
+	}
+}
+
+///////////////////////////////////////////////
+////LEGAL TEXT
+.legal{
+   font-size: 1.2rem;
+   font-weight: 400;
+   text-align: center;
+   padding: 2.5rem;
+   color: var(--color-grey-light-4);
+
+   //Removing legal text from sidebar change to navbar
+	@media only screen and (max-width: $bp-medium){
+       display: none;
+	} 
+
+
+}
+
+
+///////////////////////////////////////////////
+////GALLERY PHOTOS
+.gallery{
+    display: flex;
+
+    @media only screen and(max-width: $bp-smallest3){
+      flex-direction: column;
+    }
+    
+
+	&__photo{
+       width: 100%;
+       display: block;/*to create responsive images*/
+	}
+
+
+}
+
+///////////////////////////////////////////////
+////OVERVIEW
+.overview{
+  display: flex;
+  //justify-content: space-between;
+  align-items: center;
+
+	&__heading{
+       font-size: 2.26rem;
+       font-weight: 300;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+       padding: 1.5rem 2.5rem;
+
+       //Reducing the font size at 600px;
+       @media only screen and (max-width: $bp-small){
+          font-size: 1.8rem;
+          padding: 1.25rem 2rem;
+       }
+
+       @media only screen and (max-width: $bp-smallest3){
+           font-size: 1.4rem;
+       }
+
+	}
+
+
+	&__stars{
+       margin-right: auto;/*trick on flexbox to create white space like this*/
+       display: flex;
+	}
+
+
+	&__icon-star,
+	&__icon-location{
+       width: 1.7rem;
+       height: 1.7rem;
+       fill: var(--color-primary); 
+
+       @media only screen and (max-width: $bp-smallest3){
+           width: 1.2rem;
+           height: 1.2rem;
+       }
+	}
+
+	&__icon-location{
+		margin-right: .5rem;
+	}
+
+
+	&__location{
+       font-size: 1.2rem;
+       display: flex;
+       align-items: center;
+	}
+
+
+	&__rating{
+       background-color: var(--color-primary);
+       color: #fff;
+       margin-left:3rem; 
+       padding: 1rem 1rem;
+       //TO fit the height and width to same height on navbar overview
+       //align-self:strech;      
+       align-self: strech;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+
+       @media only screen and (max-width: $bp-small){
+         //padding: 0 1.5rem;
+             padding: 1rem 1rem;
+       }
+
+       @media only screen and(max-width: $bp-smallest3){
+               padding: 2rem 2rem;
+               text-align: center;
+       }
+
+	}
+
+
+	&__rating-average{
+       font-size: 2.25rem;
+       font-weight: 300;
+       margin-bottom: -3px;
+
+       @media only screen and (max-width: $bp-small){
+         font-size: 1.8rem;
+       }
+       
+	}
+
+	&__rating-count{
+       font-size: .8rem;
+       text-transform: uppercase;
+
+       @media only screen and (max-width: $bp-small){
+          font-size: .5rem;
+       }
+	}
+}
+
+///////////////////////////////////////////////
+////BUTTON INLINE
+.btn-inline{
+	border: none;
+	color: var(--color-primary);
+	font-size: inherit;
+	border-bottom: 1px currentcolor;
+	padding-bottom: 2px;
+	display: inline-block;
+	background-color: transparent;
+	cursor: pointer;
+	transition: .2s ease-in;
+
+	& span{
+      margin-left: .3rem;
+	}
+
+	&:hover{
+		color: var(--color-grey-dark-1);
+		& span{
+          margin-left: .8rem;
+          transition: margin-left .2s ease-in;
+		}
+	}
+
+    //CREATING THE ANIMATION INFINITE
+	&:focus{
+		outline: none;
+		animation: pulsate 1s infinite;
+	}
+}
+
+@keyframes pulsate{
+	0%{
+     transform: scale(1);
+     box-shadow: no; 
+	}
+
+	50%{
+	 transform: scale(1.05);
+	 box-shadow: 0 1rem 4rem rgba(0,0,0,.25);	
+	}
+
+	100%{
+	transform: scale(1);
+     box-shadow: no;	
+	}
+}
+
+///////////////////////////////////////////////
+////PARAGRAPH
+.paragraph:not(:last-of-type){
+	margin-bottom: 2rem;
+}
+
+///////////////////////////////////////////////
+////LIST
+.list{
+	list-style: none;
+	padding: 3rem 0;
+	margin: 3rem 0;
+	border-top: var(--line);
+	border-bottom: var(--line);
+
+	display: flex;
+	flex-wrap: wrap;
+	&__item{
+		flex: 0 0 50%;
+		margin-bottom: .7rem;
+	}
+
+	//inserting svg as image in pseudoelement
+	&__item::before{
+		content: "";
+		display: inline-block;
+		height: 1rem;
+		width: 1rem;
+		margin-right: .7rem;
+		//olders browsers
+		/*background-image: url(../img/svg/chevron-thin-right.svg);
+		background-size: cover;*/
+
+		//Newer Brosers Masks
+		@supports (-webkit-mask-image:url()) or (mask-image:url()){
+			//masking for coloring svg icon
+		   background-color: var(--color-primary);
+		   -webkit-mask-image: url(../img/svg/chevron-thin-right.svg);
+		   -webkit-mask-size: cover;
+		   //without prefix
+		   mask-image: url(../img/svg/chevron-thin-right.svg);
+		   mask-size: cover;
+
+		} 
+
+		
+	}
+}
+
+
+///////////////////////////////////////////////
+////RECOMMEND
+
+.recommend{
+	font-size: 1.3rem;
+	color: var(--color-grey-dark-3);
+	display: flex;
+	align-items: center;
+
+	&__count{
+     margin-right: auto;
+	}
+
+
+	&__friends{
+       display: flex;
+	}
+
+
+	&__photo{
+	   box-sizing: content-box;
+       height: 4rem;
+       width: 4rem;
+       border-radius: 50%; 
+       border: 3px solid #fff;
+
+       &:not(:last-child){
+       	margin-right: -2rem;
+       }
+
+	}
+
+}
+
+
+///////////////////////////////////////////////
+////REVIEWS
+.review{
+	background-color: #fff;
+	box-shadow: var(--shadow-dark-light);
+	padding: 3rem;
+	margin-bottom: 3.5rem;
+	position: relative;
+	overflow: hidden;
+    
+     //Reducing padding and margin bottom at 900px
+	@media only screen and(max-width: $bp-medium){
+       padding: 2rem;
+       margin-bottom: 3rem;
+	}
+
+	&__text{
+       margin-bottom: 2rem;
+       z-index: 10;
+       position: relative;
+	}
+
+	&__user{
+       display: flex;
+       align-items: center;
+	}
+
+	&__photo{
+       height: 4.5rem;
+       width: 4.5rem;
+       border-radius: 50%;
+       box-sizing: content-box;
+       margin-right: 1.5rem;
+	}
+
+	&__user-box{
+       margin-right: auto;
+       //padding-left: 1.5rem; 
+	}
+
+	&__user-name{
+		font-size: 1.1rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		margin-bottom: .4rem;
+
+	}
+
+	&__user-date{
+       font-size: 1rem;
+       color: var(--color-grey-dark-3);
+	}
+
+	&__rating{
+       color: var(--color-primary-dark);
+       font-weight: 300;
+       font-size: 2.2rem;
+
+	}
+	/*
+    ===========
+    inserting quotation Mark symbol html entitties in css pseudoelement
+    https://css-tricks.com/snippets/html/glyphs/
+    ==========
+	*/
+	&::before{
+		content:"\201C";
+		position: absolute;
+		top: -2.75rem;
+		left: -1rem;
+		font-size: 20rem;
+		line-height: 1;
+		color: var(--color-grey-light-2);
+		font-family: sans-serif;
+		z-index: 1;
+	}
+
+}
+
+///////////////////////////////////////////////
+////CALL TO ACTION
+.cta{
+	padding: 3.5rem 0;
+	text-align: center;
+
+	//Reducing padding and margin bottom at 900px
+	@media only screen and(max-width: $bp-medium){
+       padding: 2.5rem 0;
+	}
+
+	&__book-now{
+		text-transform: uppercase;
+		font-size: 2rem;
+		font-weight: 300;
+		margin-bottom: 2.5rem;
+
+		@media only screen and (max-width: $bp-smallest){
+           font-size: 1.6rem;
+		}
+
+		@media only screen and (max-width: $bp-smallest3){
+            font-size: 1.4rem;
+		}
+	}
+}
+
+///////////////////////////////////////////////
+////BUTTON
+.btn{
+     font-size: 1.5rem;
+     border: none;
+     font-weight: 300;
+     text-transform: uppercase;
+     border-radius: 100px;
+     border: none;
+     background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+     color: #fff;
+     position: relative;
+     overflow: hidden;
+     cursor: pointer;
+
+     @media only screen and (max-width: $bp-smallest3) {
+     	font-size: 1.4rem;
+     }
+
+    & > * {
+    	display: inline-block;
+    	height: 100%;
+        width: 100%;
+        transition: all .2s ease;
+    } 
+
+	&__visible{
+       display: inline-block;
+       padding: 2rem 7.5rem;
+
+       @media only screen and (max-width: $bp-smallest3){
+         padding: 2rem 5.5rem;
+       }
+	}
+
+	&__invisible{
+       position: absolute;
+       padding: 2rem 0;  
+       left: 0;
+       top: -100%;
+	}
+
+	/*
+    =======
+    Functionality
+    ======
+	*/
+
+	&:hover{
+		background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+	}
+
+	&:hover &__invisible{
+       top: 0;
+	}
+
+	&:hover &__visible{
+	   transform: translateY(100%);	
+	}
+
+	&:focus{
+		outline: none;
+		animation: pulsate 1s infinite;
+	}
+
+
+}

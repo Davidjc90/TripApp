@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+         *{
+             margin:0;
+             padding:0;
+             box-sizing: border-box;
+         }
+
+         .container{
+             background-color: #ccc;
+             padding:10px ;
+             display: flex;
+             flex-direction: row;
+             justify-content: space-between;
+             align-items: center;
+             flex-wrap: wrap;
+         }
+         .items{
+             background-color: #f1425d;
+             margin: 30px;
+             padding: 30px;
+             color: #fff;
+             font-size: 30px;
+             flex-grow: 1;
+         }
+
+         .i2{
+             height: 200px;
+             /*flex-grow: 2;*/
+             flex-basis: 20%;
+         }
+
+         .i4{
+             font-size: 60px;
+             align-self: stretch;
+             order: -1;
+         }
+
+
+        </style>
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <div class="items">1</div>
+            <div class="items">2</div>
+            <div class="items i2">3</div>
+            <div class="items">4</div>
+            <div class="items i4">5</div>
+            <div class="items">6</div>
+            <div class="items">7</div>
+            <div class="items">8</div>
+            <div class="items">9</div>
+            <div class="items ">10</div>
+        </div>
+
+
+
+    </body>
+</html>
